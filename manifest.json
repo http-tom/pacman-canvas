@@ -14,10 +14,4 @@
 
   "offline_enabled": true,
 
-  "app": {
-    "urls": ["http://pacman.platzh1rsch.ch/"],
-    "launch": {
-      "web_url": "http://pacman.platzh1rsch.ch"
-    }
-  }
 }

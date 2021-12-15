@@ -175,7 +175,7 @@ function geronimo() {
 			$(h).html("Lvl: " + this.level);
 		};
 		this.canvas = $("#myCanvas").get(0);
-		this.wallColor = "Blue";
+		this.wallColor = "Gray";
 		this.width = this.canvas.width;
 		this.height = this.canvas.height;
 
@@ -535,7 +535,7 @@ function geronimo() {
 
 		/* ------------ Start Pre-Build Walls  ------------ */
 		this.buildWalls = function () {
-			if (this.ghostMode === 0) game.wallColor = "Blue";
+			if (this.ghostMode === 0) game.wallColor = "Brown";
 			else game.wallColor = "Red";
 			canvas_walls = document.createElement('canvas');
 			canvas_walls.width = game.canvas.width;
@@ -1484,8 +1484,8 @@ function geronimo() {
 
 		// Pills
 		context.beginPath();
-		context.fillStyle = "White";
-		context.strokeStyle = "White";
+		context.fillStyle = "Black";
+		context.strokeStyle = "Black";
 
 		var dotPosY;
 		if (game.map && game.map.posY && game.map.posY.length > 0) {
@@ -1496,14 +1496,27 @@ function geronimo() {
 						context.arc(game.toPixelPos(column.col - 1) + pacman.radius, game.toPixelPos(dotPosY - 1) + pacman.radius, game.pillSize, 0 * Math.PI, 2 * Math.PI);
 						context.moveTo(game.toPixelPos(column.col - 1), game.toPixelPos(dotPosY - 1));
 					} else if (column.type == "powerpill") {
-						context.arc(game.toPixelPos(column.col - 1) + pacman.radius, game.toPixelPos(dotPosY - 1) + pacman.radius, game.powerpillSizeCurrent, 0 * Math.PI, 2 * Math.PI);
-						context.moveTo(game.toPixelPos(column.col - 1), game.toPixelPos(dotPosY - 1));
+						// context.arc(game.toPixelPos(column.col - 1) + pacman.radius, game.toPixelPos(dotPosY - 1) + pacman.radius, game.powerpillSizeCurrent, 0 * Math.PI, 2 * Math.PI);
+						// context.moveTo(game.toPixelPos(column.col - 1), game.toPixelPos(dotPosY - 1));
+						var image = new Image();
+						image.src = 'img/Mars.webp';
+						context.drawImage(image,game.toPixelPos(column.col - 1), game.toPixelPos(dotPosY - 1), 40, 40);
 					}
 				});
 			});
 		} else {
 			console.warn('Map not loaded (yet).')
 		}
+
+		// var image = new Image();
+		// image.src = 'img/Mars.webp';
+		// context.drawImage(image,10,10);
+
+		// var image = new Image();
+		// image.onload = function () {
+		// 	context.drawImage(image,10,10, 10, 10);
+		// };
+		// image.src = 'img/Mars.webp';
 
 		context.fill();
 
@@ -1520,13 +1533,17 @@ function geronimo() {
 
 
 			// Pac Man
-			context.beginPath();
-			context.fillStyle = "Yellow";
-			context.strokeStyle = "Yellow";
-			context.arc(pacman.posX + pacman.radius, pacman.posY + pacman.radius, pacman.radius, pacman.angle1 * Math.PI, pacman.angle2 * Math.PI);
-			context.lineTo(pacman.posX + pacman.radius, pacman.posY + pacman.radius);
-			context.stroke();
-			context.fill();
+			// context.beginPath();
+			// context.fillStyle = "Red";
+			// context.strokeStyle = "Red";
+			// context.arc(pacman.posX + pacman.radius, pacman.posY + pacman.radius, pacman.radius, pacman.angle1 * Math.PI, pacman.angle2 * Math.PI);
+			// context.lineTo(pacman.posX + pacman.radius, pacman.posY + pacman.radius);
+			// context.stroke();
+			// context.fill();
+
+			var image = new Image();
+			image.src = 'img/Mars.webp';
+			context.drawImage(image, pacman.posX, pacman.posY, 50, 50);//game.toPixelPos(column.col - 1), game.toPixelPos(dotPosY - 1), 40, 40);
 		}
 
 	}
